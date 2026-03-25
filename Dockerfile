@@ -2,12 +2,12 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY backend/requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install uv
 
 COPY backend/ ./
-COPY config.example.yaml ./config.yaml
+
+RUN uv sync --frozen --no-dev 2>/dev/null || uv sync --no-dev 2>/dev/null || pip install .
 
 EXPOSE 8024
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8024"]
+CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8024"]
