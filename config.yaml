@@ -3,8 +3,8 @@ config_version: 3
 models:
   - model: "Qwen/Qwen3-32B"
     provider: "openai"
-    base_url: "${OPENAI_API_BASE}"
-    api_key: "${OPENAI_API_KEY}"
+    base_url: "$OPENAI_API_BASE"
+    api_key: "$OPENAI_API_KEY"
     default: true
 
 tools:
