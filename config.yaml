@@ -19,3 +19,7 @@ tools:
 
 sandbox:
   use: "deerflow.sandbox.local:LocalSandboxProvider"
+
+skills:
+  directories:
+    - "skills/public"
