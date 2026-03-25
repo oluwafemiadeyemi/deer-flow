@@ -1,22 +1,21 @@
 config_version: 3
+log_level: info
 
 models:
-  - model: "Qwen/Qwen3-32B"
-    provider: "openai"
-    base_url: "$OPENAI_API_BASE"
+  - name: "qwen3-32b"
+    use: "deerflow.models.openai:OpenAIChatModel"
+    model: "Qwen/Qwen3-32B"
     api_key: "$OPENAI_API_KEY"
+    base_url: "$OPENAI_API_BASE"
     default: true
 
 tools:
-  search:
-    provider: "duckduckgo"
-  fetch:
-    enabled: true
-  bash:
-    enabled: false
+  - name: "web_search"
+    group: "web"
+    use: "deerflow.tools.search:DuckDuckGoSearchTool"
+  - name: "web_fetch"
+    group: "web"
+    use: "deerflow.tools.fetch:WebFetchTool"
 
 sandbox:
-  execution_mode: "local"
-
-logging:
-  level: "info"
+  use: "deerflow.sandbox.local:LocalSandboxProvider"
