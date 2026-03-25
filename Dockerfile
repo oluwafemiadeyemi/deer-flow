@@ -18,7 +18,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.7.20 /uv /uvx /usr/local/bin/
 
 WORKDIR /app
 COPY backend ./backend
-COPY config.example.yaml ./config.yaml
+COPY config.yaml ./backend/config.yaml
 
 RUN cd backend && uv sync
 
